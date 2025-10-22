@@ -1,0 +1,257 @@
+/* RESET GERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0f112b;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 260px;
+    background-color: #17162D;
+    min-height: 100vh;
+    padding: 25px 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar .logo {
+    text-align: center;
+    margin: 0 auto 35px;
+}
+
+.sidebar .logo img {
+    width: 130px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* MENU BASE */
+.menu {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+}
+
+/* Cada item de menu */
+.menu-item {
+    position: relative;
+    color: #cfd5ff;
+    font-size: 15px;
+    margin-bottom: 18px;
+    border-radius: 14px;
+    padding: 16px 18px;
+    background: transparent;
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+    overflow: visible;
+    cursor: pointer;
+    padding-right: 140px; /* espaço reservado para submenu interno */
+}
+
+/* Leve destaque ao passar o mouse */
+.menu-item:hover {
+    background: rgba(26, 27, 56, 0.6);
+}
+
+/* Cabeçalho do menu */
+.menu-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Ícone e texto principal */
+.menu-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-left i {
+    font-size: 20px;
+    color: #cbd3ff;
+}
+
+.menu-text {
+    font-weight: 600;
+    font-size: 16px;
+    color: #e6ebff;
+    line-height: 1.1;
+}
+
+/* Ícone de seta */
+.submenu-toggle {
+    margin-left: auto;
+    color: #cbd3ff;
+    font-size: 18px;
+    transition: transform 0.25s ease;
+}
+
+/* Quando ativo */
+.menu-item.active {
+    background: rgba(37, 99, 235, 0.08);
+    box-shadow: 0 6px 20px rgba(6, 8, 30, 0.45);
+}
+
+.menu-item.active .submenu-toggle {
+    transform: rotate(180deg);
+}
+
+/* SUBMENU */
+.submenu {
+    list-style: none;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms ease, transform 250ms ease;
+    z-index: 5;
+}
+
+/* Linha vertical ligando menu e submenu */
+.submenu::before {
+    background: rgba(255, 255, 255, 0.03);
+    left: -12px;
+    width: 1px;
+}
+
+/* Itens do submenu (pills arredondados) */
+.submenu li {
+    background: #1e2346;
+    color: #bfc7ff;
+    padding: 8px 14px;
+    border-radius: 12px;
+    white-space: nowrap;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(6, 8, 30, 0.35);
+    transform: translateX(6px);
+    transition: background 180ms ease, transform 180ms ease;
+    pointer-events: auto;
+}
+
+/* Hover suave nos submenus */
+.submenu li:hover {
+    background: linear-gradient(180deg, rgba(30, 36, 90, 0.98), rgba(28, 34, 70, 0.98));
+    color: #fff;
+    transform: translateX(0);
+}
+
+/* Mostrar submenu ao abrir o menu */
+.menu-item.active .submenu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Itens de menu secundário (sem submenu) */
+.menu-item i.ri-calendar-line,
+.menu-item i.ri-pencil-line,
+.menu-item i.ri-notification-line {
+    font-size: 20px;
+    color: #cbd3ff;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    padding: 50px;
+}
+
+/* TIMELINE (mantida igual) */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.week {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    position: relative;
+}
+
+.icon.completed {
+    background-color: #0db5a6;
+}
+
+.icon.locked {
+    background-color: #555565;
+}
+
+.icon .tooltip {
+    position: absolute;
+    top: -25px;
+    background-color: #0db5a6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: none;
+}
+
+.icon:hover .tooltip {
+    display: block;
+}
+
+.dots {
+    display: flex;
+    gap: 10px;
+}
+
+.dots span {
+    width: 10px;
+    height: 10px;
+    background-color: #555565;
+    border-radius: 50%;
+}
+
+.label {
+    flex: 1;
+    font-size: 14px;
+    color: #fff;
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 700px) {
+    .sidebar {
+        width: 220px;
+        padding: 20px;
+    }
+
+    .menu-item {
+        padding-right: 110px;
+    }
+
+    .submenu {
+        right: 12px;
+    }
+}

@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #17162D;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 900px;
+  background: transparent;
+}
+
+.left-side {
+  text-align: center;
+  flex: 1;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #bbb;
+  letter-spacing: 2px;
+}
+
+.login-box {
+  flex: 1;
+  background: #121321;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 380px;
+}
+
+.login-box h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group input {
+  background: #2a2d3e;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: #888;
+}
+
+.password-group {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 38px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ícone de olho cortado */
+.eye-icon {
+  position: relative;
+  width: 24px;
+  height: 14px;
+  border: 2px solid #2de2d1; /* azul turquesa */
+  border-radius: 50%;
+  box-sizing: border-box;
+  transform: rotate(0deg);
+}
+
+/* Íris do olho */
+.eye-icon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #2de2d1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Linha diagonal cortando o olho */
+.eye-icon::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 2px;
+  background: #2de2d1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 2px;
+}
+
+/* Quando o olho estiver "aberto" */
+.eye-icon.open::after {
+  display: none; /* Remove a linha diagonal */
+}
+
+.forgot {
+  text-align: right;
+}
+
+.forgot a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn {
+  background: #00e5ff;
+  color: #000;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #00bcd4;
+}
+
+.signup-text {
+  text-align: center;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.signup-link {
+  color: #00e5ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}

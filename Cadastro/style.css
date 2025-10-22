@@ -1,0 +1,196 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #17162D;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* CONTAINER PRINCIPAL */
+.container {
+  display: flex;
+  width: 900px;
+  background-color: #17162D;
+}
+
+/* LADO ESQUERDO */
+.left-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  color: #ccc;
+}
+
+/* CAIXA DE CADASTRO */
+.signup-box {
+  flex: 1;
+  background-color: #121321;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.signup-box h2 {
+  text-align: left;
+  margin-bottom: 25px;
+  font-size: 1.6rem;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+input {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2a2d3e;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+input::placeholder {
+  color: #8c8c8c;
+}
+
+/* GRUPO DE SENHA COM OLHO */
+.password-group {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ÍCONE DE OLHO FEITO EM CSS */
+.eye-icon {
+  position: relative;
+  width: 24px;
+  height: 14px;
+  border: 2px solid #1ae5e0;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.eye-icon::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #1ae5e0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.eye-icon::after {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 2px;
+  background: #1ae5e0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 2px;
+}
+
+.eye-icon.open::after {
+  display: none;
+}
+
+/* BOTÕES E LINKS */
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #1ae5e0;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #18b9b5;
+}
+
+.forgot {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.forgot a {
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.signin-text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.signin-link {
+  color: #1ae5e0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signin-link:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .left-side {
+    margin-bottom: 20px;
+  }
+}

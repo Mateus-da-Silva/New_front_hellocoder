@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloCoder Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra Lateral -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="../assets/img/logo.png" alt="HelloCoder Logo" class="logo" />
+            </div>
+            <ul class="menu">
+                <li class="menu-item">
+                    <div class="menu-header">
+                        <div class="menu-left">
+                        <i class="ri-dashboard-line"></i>
+                        <span class="menu-text">Página Inicial</span>
+                        </div>
+                        <i class="ri-arrow-down-s-line submenu-toggle"></i>
+                    </div>
+
+                <!-- Submenu fica DENTRO do mesmo li (importante) -->
+                    <ul class="submenu">
+                        <li>Atividades</li>
+                        <li>Pomodoro</li>
+                        <li>Meu usuário</li>
+                    </ul>
+                </li>
+
+                
+                <li class="menu-item"><i class="ri-calendar-line"></i>Calendário</li>
+                <li class="menu-item"><i class="ri-pencil-line"></i>Revisões</li>
+                <li class="menu-item"><i class="ri-notification-line"></i>Notificações</li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <div class="timeline">
+                <div class="week">
+                    <div class="icon star completed">★<span class="tooltip">COMEÇAR</span></div>
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="label">SEMANA 1 - 00/00/000</div>
+                </div>
+                <div class="week">
+                    <div class="icon book completed">📖</div>
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="label">SEMANA 2 - 00/00/000</div>
+                </div>
+                <div class="week">
+                    <div class="icon book locked">📖</div>
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="label">SEMANA 3 - 00/00/000</div>
+                </div>
+                <div class="week">
+                    <div class="icon lock locked">🔒</div>
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="label">SEMANA 4 - 00/00/000</div>
+                </div>
+                <div class="week">
+                    <div class="icon book completed">📖</div>
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="label">SEMANA 5 - 00/00/000</div>
+                </div>
+                <div class="week">
+                    <div class="icon star completed">★</div>
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="label">SEMANA 6 - 00/00/000</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
