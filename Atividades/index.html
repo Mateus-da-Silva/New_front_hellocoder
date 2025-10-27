@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HelloCoder - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e6ad6f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="top-icons">
+      <div class="dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+    </div>
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/906/906175.png" alt="logo">
+      <h2>HelloCoder</h2>
+      <p>STUDY SYSTEM</p>
+    </div>
+    <nav class="menu">
+      <button class="menu-item" id="menuToggle">
+        <i class="fa-solid fa-grid-2"></i>
+      </button>
+      <div class="submenu">
+        <a href="#"><i class="fa-solid fa-book"></i> Atividades</a>
+        <a href="#"><i class="fa-solid fa-user"></i> Meu Usuário</a>
+        <a href="#"><i class="fa-solid fa-clock"></i> Pomodoro</a>
+      </div>
+      <button class="menu-item"><i class="fa-solid fa-calendar-days"></i></button>
+      <button class="menu-item"><i class="fa-solid fa-pen"></i></button>
+      <button class="menu-item"><i class="fa-solid fa-bell"></i></button>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <header>
+      <h3><i class="fa-solid fa-bell"></i> Agendado para hoje:</h3>
+      <span id="dataAtual"></span>
+    </header>
+    <section class="tasks">
+      <div class="task-card">
+        <span>BANCO DE DADOS II</span>
+        <div class="time">
+          <i class="fa-regular fa-clock"></i> 23min
+        </div>
+      </div>
+      <div class="task-card">
+        <span>SISTEMAS DE INFORMAÇÃO</span>
+        <div class="time">
+          <i class="fa-regular fa-clock"></i> 1hr
+        </div>
+      </div>
+    </section>
+
+    <h3><i class="fa-solid fa-check"></i> Estudado hoje:</h3>
+    <section class="tasks">
+      <div class="task-card">
+        <span>BANCO DE DADOS II</span>
+        <div class="time">
+          <i class="fa-solid fa-list"></i>
+        </div>
+      </div>
+    </section>
+
+    <h3><i class="fa-solid fa-bullseye"></i> Estudado ontem:</h3>
+    <section class="tasks">
+      <div class="task-card">
+        <span>MATEMÁTICA II</span>
+        <div class="time">
+          <i class="fa-solid fa-list"></i>
+        </div>
+      </div>
+      <div class="task-card">
+        <span>JAVASCRIPT WEB II</span>
+        <div class="time">
+          <i class="fa-solid fa-list"></i>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

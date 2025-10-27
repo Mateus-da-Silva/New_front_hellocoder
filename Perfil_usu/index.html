@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HelloCoder - Perfil</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e6ad6f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="top-icons">
+      <div class="dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+      </div>
+    </div>
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/906/906175.png" alt="logo">
+      <h2>HelloCoder</h2>
+      <p>STUDY SYSTEM</p>
+    </div>
+    <nav class="menu">
+      <button class="menu-item" id="menuToggle">
+        <i class="fa-solid fa-grid-2"></i>
+      </button>
+      <div class="submenu">
+        <a href="#"><i class="fa-solid fa-user"></i> Meu Usuário</a>
+        <a href="#"><i class="fa-solid fa-clock"></i> Pomodoro</a>
+        <a href="#"><i class="fa-solid fa-book"></i> Atividades</a>
+      </div>
+      <button class="menu-item"><i class="fa-solid fa-calendar-days"></i></button>
+      <button class="menu-item"><i class="fa-solid fa-pen"></i></button>
+      <button class="menu-item"><i class="fa-solid fa-bell"></i></button>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section class="profile">
+      <div class="profile-card">
+        <div class="profile-header">
+          <div class="avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <button id="editProfile"><i class="fa-solid fa-pen"></i></button>
+        </div>
+        <h2 id="nomeUsuario">Joãozinho</h2>
+        <p class="username">User123ghjy</p>
+        <p class="since"><i class="fa-solid fa-calendar"></i> Desde Fevereiro 2025</p>
+        <p class="followers"><i class="fa-solid fa-users"></i> 0 Seguindo / 0 Seguidores</p>
+        <h3>Estatísticas</h3>
+        <div class="stats">
+          <div class="stat-box">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+            <div>
+              <p>0</p>
+              <span>Dias seguidos</span>
+            </div>
+          </div>
+          <div class="stat-box bronze">
+            <i class="fa-solid fa-medal"></i>
+            <div>
+              <p>Bronze</p>
+              <span>Finalizados</span>
+            </div>
+          </div>
+          <div class="stat-box">
+            <i class="fa-solid fa-bolt"></i>
+            <div>
+              <p>27</p>
+              <span>Total XP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="progress">
+      <div class="week">
+        <span class="day active">Fr</span>
+        <span class="day active">Sa</span>
+        <span class="day active">Su</span>
+        <span class="day missed">Mo</span>
+        <span class="day">Tu</span>
+        <span class="day">We</span>
+        <span class="day">Th</span>
+      </div>
+
+      <div class="task-box">
+        <div class="task">
+          <div class="task-info">
+            <p><strong>PRÉ-PROVA I</strong></p>
+            <span><i class="fa-regular fa-clock"></i> 10 days</span>
+          </div>
+          <p class="progress-count">5 / 25</p>
+        </div>
+        <div class="task">
+          <div class="task-info">
+            <p><strong>MATEMÁTICA</strong></p>
+            <span><i class="fa-regular fa-clock"></i> 10 days</span>
+          </div>
+          <p class="progress-count">5 / 25</p>
+        </div>
+        <div class="task">
+          <div class="task-info">
+            <p><strong>DESAFIOS DO MÊS</strong></p>
+            <span><i class="fa-regular fa-clock"></i> 10 days</span>
+          </div>
+          <p class="progress-count">5 / 25</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

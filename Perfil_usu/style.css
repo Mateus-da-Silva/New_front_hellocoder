@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  background-color: #0E0F26;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 95px;
+  background-color: #0C0E22;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  position: fixed;
+  height: 100%;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.logo img {
+  width: 50px;
+  margin-bottom: 10px;
+}
+.logo h2 {
+  font-size: 14px;
+  text-align: center;
+}
+.logo p {
+  font-size: 10px;
+  color: #aaa;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  align-items: center;
+}
+
+.menu-item {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #bbb;
+  font-size: 22px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.menu-item:hover {
+  background: rgba(255,255,255,0.1);
+  color: #19a7a0;
+}
+
+.submenu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  left: 90px;
+  background: #11142A;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.submenu a {
+  color: #ccc;
+  font-size: 14px;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+}
+.submenu a:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: #19a7a0;
+}
+
+.content {
+  margin-left: 120px;
+  padding: 40px;
+  display: flex;
+  gap: 40px;
+}
+
+.profile-card {
+  background: #2E2E48;
+  border-radius: 12px;
+  padding: 25px;
+  width: 300px;
+  position: relative;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: #aaa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  color: #333;
+}
+
+#editProfile {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #19a7a0;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.profile-card h2 {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.username {
+  text-align: center;
+  color: #bbb;
+  margin-bottom: 8px;
+}
+
+.profile-card p {
+  font-size: 13px;
+  color: #ccc;
+  margin: 3px 0;
+}
+
+.profile-card h3 {
+  margin-top: 15px;
+  font-size: 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 10px;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 10px;
+}
+.stat-box i {
+  font-size: 20px;
+  color: #19a7a0;
+}
+.stat-box.bronze i {
+  color: #cd7f32;
+}
+
+.progress {
+  flex: 1;
+}
+
+.week {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.day {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #444;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.day.active {
+  background: #19a7a0;
+}
+.day.missed {
+  background: #d9534f;
+}
+.day:hover {
+  transform: scale(1.1);
+}
+
+.task-box {
+  background: #2E2E48;
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #6EE7E7;
+  color: #0E0F26;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.task:hover {
+  background: #80f3f3;
+  transform: translateY(-3px);
+}
+.task-info span {
+  display: block;
+  font-weight: 400;
+  font-size: 13px;
+  color: #333;
+}
+.progress-count {
+  color: #0E0F26;
+  font-weight: 600;
+}

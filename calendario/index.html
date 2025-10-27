@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HelloCoder — Calendário</title>
+
+  <!-- Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2d9b8a64a.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="dots">
+          <span class="d red"></span>
+          <span class="d yellow"></span>
+          <span class="d green"></span>
+        </div>
+        <div class="brand">
+          <img src="../assets/img/logo.png" alt="HelloCoder Logo" class="logo" />
+          <div class="brand-text">
+            <strong>HelloCoder</strong>
+            <small>STUDY SYSTEM</small>
+          </div>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <ul>
+          <li class="icon-item">
+            <a href="#" class="nav-btn" title="Dashboard"><i class="fas fa-th-large"></i></a>
+            <div class="tooltip">Dashboard</div>
+          </li>
+          <li class="icon-item active">
+            <a href="#" class="nav-btn" title="Calendário"><i class="fas fa-calendar-alt"></i></a>
+            <div class="tooltip">Calendário</div>
+          </li>
+          <li class="icon-item">
+            <a href="#" class="nav-btn" title="Revisões"><i class="fas fa-pen-nib"></i></a>
+            <div class="tooltip">Revisões</div>
+          </li>
+          <li class="icon-item">
+            <a href="#" class="nav-btn" title="Notificações"><i class="fas fa-bell"></i></a>
+            <div class="tooltip">Notificações</div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="circle-toggle" title="Abrir/Fechar painel"></button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="main-header">
+        <div class="header-left">
+          <h2>PRÓXIMO DESAFIO</h2>
+        </div>
+      </header>
+
+      <section class="content">
+        <!-- LEFT: CALENDAR -->
+        <div class="left-col">
+          <div class="month-row">
+            <button id="prevMonth" class="month-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="month-title">
+              <span id="monthName">May</span>
+              <span id="yearNumber">2025</span>
+            </div>
+            <button id="nextMonth" class="month-btn"><i class="fas fa-chevron-right"></i></button>
+          </div>
+
+          <div class="weekdays">
+            <div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
+          </div>
+
+          <div id="calendarGrid" class="calendar-grid"></div>
+
+          <div class="date-actions">
+            <div class="date-title">
+              <h4>Date</h4>
+            </div>
+            <a id="seeAll" href="#" class="see-all">See All</a>
+          </div>
+
+          <div id="quickDates" class="quick-dates">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+
+        <!-- RIGHT: SCHEDULE -->
+        <aside class="right-col">
+          <div class="time-selectors">
+            <div class="selects">
+              <select id="hourSelect" aria-label="Hour"></select>
+              <select id="minuteSelect" aria-label="Minute"></select>
+              <select id="ampmSelect" aria-label="AM/PM">
+                <option>AM</option>
+                <option selected>PM</option>
+              </select>
+            </div>
+            <div class="time-buttons" id="timeButtons">
+              <button class="time-btn">10.00 AM</button>
+              <button class="time-btn active">11.00 AM</button>
+              <button class="time-btn">12.00 PM</button>
+            </div>
+          </div>
+
+          <div class="tasks-panel">
+            <h5>TITLE</h5>
+            <div id="tasksList" class="tasks-list">
+              <div class="task">
+                <i class="fas fa-bell"></i>
+                <div class="task-text">
+                  <strong>Label</strong>
+                  <small>Description...</small>
+                </div>
+              </div>
+              <div class="task">
+                <i class="fas fa-bell"></i>
+                <div class="task-text">
+                  <strong>Label</strong>
+                  <small>Description...</small>
+                </div>
+              </div>
+              <div class="task">
+                <i class="fas fa-bell"></i>
+                <div class="task-text">
+                  <strong>Label</strong>
+                  <small>Description...</small>
+                </div>
+              </div>
+            </div>
+            <p class="note">Text description here.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
