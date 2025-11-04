@@ -1,193 +1,264 @@
-/* Interactive calendar + time pickers
-   - month navigation
-   - select day (active)
-   - quick date buttons (3 days window)
-   - hour/minute/ampm selects
-   - time buttons toggle
-*/
-
-(function(){
-  // DOM
-  const calendarGrid = document.getElementById('calendarGrid');
-  const monthNameEl = document.getElementById('monthName');
-  const yearNumberEl = document.getElementById('yearNumber');
-  const prevBtn = document.getElementById('prevMonth');
-  const nextBtn = document.getElementById('nextMonth');
-  const quickDatesEl = document.getElementById('quickDates');
-  const hourSelect = document.getElementById('hourSelect');
-  const minuteSelect = document.getElementById('minuteSelect');
-  const ampmSelect = document.getElementById('ampmSelect');
-  const timeButtons = document.getElementById('timeButtons');
-
-  let today = new Date();
-  let currentMonth = today.getMonth();
-  let currentYear = today.getFullYear();
-  let selectedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-
-  const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-  // Initialize selects
-  function populateTimeSelects(){
-    hourSelect.innerHTML = '';
-    for(let h=1; h<=12; h++){
-      const opt = document.createElement('option');
-      opt.value = h;
-      opt.textContent = h.toString().padStart(2,'0');
-      if (h === 11) opt.selected = true;
-      hourSelect.appendChild(opt);
-    }
-    minuteSelect.innerHTML = '';
-    ['00','15','30','45'].forEach(m => {
-      const opt = document.createElement('option');
-      opt.value = m;
-      opt.textContent = m;
-      minuteSelect.appendChild(opt);
+// Espera o DOM (estrutura HTML) ser totalmente carregado
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // ======================================= //
+    // JS da Sidebar (Funciona em todas as páginas)
+    // ======================================= //
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+        const header = item.querySelector('.menu-item-header');
+        header.addEventListener('click', function() {
+            if (!item.querySelector('.submenu')) {
+                menuItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.classList.remove('open'); 
+                    }
+                });
+                item.classList.add('active');
+                return;
+            }
+            const isOpen = item.classList.contains('active');
+            menuItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.classList.remove('open');
+                }
+            });
+            if (!isOpen) {
+                item.classList.add('active');
+                item.classList.add('open');
+            } else {
+                item.classList.remove('active');
+                item.classList.remove('open');
+            }
+        });
     });
-  }
-
-  // Render calendar for currentMonth/currentYear
-  function renderCalendar(month, year){
-    calendarGrid.innerHTML = '';
-    monthNameEl.textContent = monthNames[month];
-    yearNumberEl.textContent = year;
-
-    // 1st day of month (0=Sun..6=Sat)
-    const firstDay = new Date(year, month, 1).getDay();
-    // adapt so week starts Monday (M,T,W,T,F,S,S) like your print
-    // JS getDay: 0=Sun. We'll map Monday=0 slot by shifting.
-    const shift = (firstDay === 0) ? 6 : firstDay - 1;
-
-    const daysInMonth = new Date(year, month+1, 0).getDate();
-    const prevDays = new Date(year, month, 0).getDate();
-
-    // fill leading (previous month) days
-    for(let i = 0; i < shift; i++){
-      const d = document.createElement('div');
-      d.className = 'day inactive';
-      d.textContent = prevDays - shift + 1 + i;
-      calendarGrid.appendChild(d);
+    
+    const addBtn = document.querySelector('.add-btn');
+    if (addBtn) {
+        addBtn.addEventListener('click', () => alert('Adicionar novo item'));
     }
-
-    // current month days
-    for(let d=1; d<=daysInMonth; d++){
-      const cell = document.createElement('div');
-      cell.className = 'day';
-      cell.textContent = d;
-      // check if selected
-      if (selectedDate.getDate() === d &&
-          selectedDate.getMonth() === month &&
-          selectedDate.getFullYear() === year) {
-        cell.classList.add('active');
-      }
-      // highlight today's actual day
-      if (today.getDate() === d && today.getMonth() === month && today.getFullYear() === year) {
-        cell.classList.add('highlight');
-      }
-
-      // click to select
-      cell.addEventListener('click', () => {
-        if (cell.classList.contains('inactive')) return;
-        // remove previous actives
-        document.querySelectorAll('.calendar-grid .day.active').forEach(n => n.classList.remove('active'));
-        cell.classList.add('active');
-        selectedDate = new Date(year, month, d);
-        updateQuickDates(selectedDate);
-      });
-
-      calendarGrid.appendChild(cell);
+    
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const sidebar = document.querySelector('.sidebar');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
     }
-
-    // trailing next-month days to fill grid (optional)
-    const totalCells = calendarGrid.children.length;
-    const remainder = totalCells % 7;
-    if(remainder !== 0){
-      const need = 7 - remainder;
-      for(let i=1;i<=need;i++){
-        const d = document.createElement('div');
-        d.className = 'day inactive';
-        d.textContent = i;
-        calendarGrid.appendChild(d);
-      }
-    }
-  }
-
-  // Quick date buttons (Sun 4, Mon 5, Tue 6)
-  function updateQuickDates(baseDate){
-    quickDatesEl.innerHTML = '';
-    // show baseDate and next two days
-    for(let i=0;i<3;i++){
-      const dt = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate() + i);
-      const btn = document.createElement('button');
-      btn.className = (i===0 ? 'active' : '');
-      const weekday = dt.toLocaleDateString('en-US',{weekday:'short'}); // Sun, Mon
-      btn.textContent = `${weekday} ${dt.getDate()}`;
-      btn.addEventListener('click', () => {
-        // toggle active
-        quickDatesEl.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        // set selectedDate to this dt and re-render calendar activation
-        selectedDate = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
-        renderCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
-      });
-      quickDatesEl.appendChild(btn);
-    }
-  }
-
-  // Month navigation
-  prevBtn.addEventListener('click', () => {
-    currentMonth--;
-    if(currentMonth < 0){ currentMonth = 11; currentYear--;}
-    renderCalendar(currentMonth, currentYear);
-  });
-  nextBtn.addEventListener('click', () => {
-    currentMonth++;
-    if(currentMonth > 11){ currentMonth = 0; currentYear++;}
-    renderCalendar(currentMonth, currentYear);
-  });
-
-  // time buttons click handler
-  function initTimeButtons(){
-    timeButtons.querySelectorAll('.time-btn').forEach(btn=>{
-      btn.addEventListener('click', () => {
-        timeButtons.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        // parse text into selects
-        const txt = btn.textContent.trim(); // "11.00 AM"
-        const [hm, ampm] = txt.split(' ');
-        const [h] = hm.split('.');
-        hourSelect.value = parseInt(h,10);
-        minuteSelect.value = '00';
-        ampmSelect.value = ampm;
-      });
+    
+    const submenuItems = document.querySelectorAll('.submenu-item');
+    submenuItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            submenuItems.forEach(subItem => subItem.classList.remove('active-sub'));
+            this.classList.add('active-sub');
+            console.log('Navegando para:', this.textContent);
+        });
     });
-  }
+    
+    // ======================================= //
+    // LÓGICA DO POMODORO (Ignorada se não for a pág. Pomodoro)
+    // ======================================= //
+    // ... (toda a lógica do pomodoro, modal e alarme vai aqui) ...
+    // (Omitido para manter o foco, mas o teu código original fica aqui)
 
-  // when selects change, reflect in time buttons (deselect)
-  function hookupSelects(){
-    [hourSelect, minuteSelect, ampmSelect].forEach(s => {
-      s.addEventListener('change', () => {
-        timeButtons.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('active'));
-      });
-    });
-  }
+    // ======================================= //
+    // LÓGICA DA PÁGINA "REVISÕES" (Ignorada se não for a pág. Revisões)
+    // ======================================= //
+    // ... (toda a lógica das revisões vai aqui) ...
+    // (Omitido para manter o foco, mas o teu código original fica aqui)
 
-  // init
-  function init(){
-    populateTimeSelects();
-    hookupSelects();
-    initTimeButtons();
-    // set selectedDate default to today and render
-    selectedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    currentMonth = selectedDate.getMonth();
-    currentYear = selectedDate.getFullYear();
-    renderCalendar(currentMonth,currentYear);
-    updateQuickDates(selectedDate);
 
-    // click outside to hide possible tooltips (not essential but keeps things tidy)
-    document.addEventListener('click', (e)=>{
-      // keep it simple — nothing to hide here
-    });
-  }
+    // ======================================= //
+    // NOVO: LÓGICA DA PÁGINA "CALENDÁRIO"     //
+    // ======================================= //
 
-  init();
-})();
+    // Seleciona os elementos do calendário
+    const monthDisplay = document.getElementById('month-display');
+    const yearDisplay = document.getElementById('year-display');
+    const daysGrid = document.getElementById('calendar-days-grid');
+    const prevMonthBtn = document.getElementById('prev-month-btn');
+    const nextMonthBtn = document.getElementById('next-month-btn');
+    const scheduleList = document.getElementById('schedule-list');
+    
+    // NOVO: Seleciona o container do relógio
+    const clockContainer = document.querySelector('.time-list-container');
+
+    // Só executa se estivermos na página do calendário
+    if (monthDisplay) {
+        
+        // --- Simulação de Banco de Dados de Compromissos ---
+        // ALTERADO: Movi os compromissos de Maio para Novembro (mês atual)
+        // para que possas vê-los a funcionar com a data de hoje.
+        const appointments = {
+            "2025-11-04": [ // MUDADO DE 2025-05-04
+                { title: "Reunião de Projeto", description: "Alinhar próximas sprints." },
+                { title: "Estudar Álgebra Linear", description: "Capítulo 3." }
+            ],
+            "2025-11-08": [ // MUDADO DE 2025-05-08
+                { title: "Consulta Médica", description: "Check-up anual." }
+            ],
+            "2025-11-15": [ // MUDADO DE 2025-05-15
+                { title: "Entregar trabalho Banco de Dados II", description: "Fase 2 do projeto." }
+            ]
+        };
+
+        // ALTERADO: Removemos a data forçada e usamos a data real
+        const today = new Date(); // Esta é a data real de "hoje"
+        
+        // --- Estado do Calendário ---
+        // ALTERADO: Inicia o calendário no mês e ano atuais
+        let currentDate = new Date(today.getFullYear(), today.getMonth(), 1); 
+        // ALTERADO: Inicia o dia selecionado como "hoje"
+        let selectedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()); 
+
+        const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+        // --- FUNÇÕES ---
+
+        // Desenha os compromissos na barra lateral
+        function renderAppointments(date) {
+            scheduleList.innerHTML = ''; // Limpa a lista
+            
+            // Formata a data para "YYYY-MM-DD"
+            const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+            
+            const dayAppointments = appointments[key];
+
+            if (dayAppointments && dayAppointments.length > 0) {
+                dayAppointments.forEach(app => {
+                    const item = document.createElement('div');
+                    item.className = 'schedule-item';
+                    item.innerHTML = `
+                        <i class="fas fa-bell"></i>
+                        <div class="schedule-item-details">
+                            <span class="schedule-item-title">${app.title}</span>
+                            <span class="schedule-item-desc">${app.description}</span>
+                        </div>
+                    `;
+                    scheduleList.appendChild(item);
+                });
+            } else {
+                scheduleList.innerHTML = '<div class="schedule-item-details"><span class="schedule-item-desc">Nenhum compromisso para este dia.</span></div>';
+            }
+        }
+
+        // Desenha o calendário
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+
+            // Atualiza o display "May 2025"
+            monthDisplay.textContent = monthNames[month];
+            yearDisplay.textContent = year;
+
+            daysGrid.innerHTML = ''; // Limpa o grid
+
+            // Lógica para encontrar o primeiro dia e o total de dias
+            const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0=Dom, 1=Seg,...
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Ajusta o 'firstDay' para começar na Segunda (M)
+            const gridStartDate = (firstDayOfMonth === 0) ? 6 : (firstDayOfMonth - 1);
+
+            // 1. Preenche os dias do mês anterior
+            const daysInPrevMonth = new Date(year, month, 0).getDate();
+            for (let i = 0; i < gridStartDate; i++) {
+                const day = daysInPrevMonth - gridStartDate + i + 1;
+                const el = document.createElement('div');
+                el.className = 'day other-month';
+                el.textContent = day;
+                daysGrid.appendChild(el);
+            }
+
+            // 2. Preenche os dias do mês atual
+            for (let i = 1; i <= daysInMonth; i++) {
+                const el = document.createElement('div');
+                el.className = 'day';
+                el.textContent = i;
+                
+                const dayDate = new Date(year, month, i);
+
+                // ALTERADO: Marca o dia "Hoje" real
+                if (dayDate.toDateString() === today.toDateString()) {
+                    el.classList.add('today');
+                }
+                
+                // Marca o dia "Selecionado"
+                if (dayDate.toDateString() === selectedDate.toDateString()) {
+                    el.classList.add('selected');
+                }
+                
+                // Adiciona o evento de clique
+                el.addEventListener('click', () => {
+                    selectedDate = dayDate;
+                    renderCalendar(); // Redesenha o calendário
+                    renderAppointments(selectedDate); // Atualiza os compromissos
+                });
+                
+                daysGrid.appendChild(el);
+            }
+
+            // 3. Preenche os dias do próximo mês
+            const totalGridCells = 42; // 6 semanas * 7 dias
+            const remainingCells = totalGridCells - (gridStartDate + daysInMonth);
+            for (let i = 1; i <= remainingCells; i++) {
+                const el = document.createElement('div');
+                el.className = 'day other-month';
+                el.textContent = i;
+                daysGrid.appendChild(el);
+            }
+        }
+        
+        // NOVO: Função para o Relógio Digital
+        function startDigitalClock() {
+            if (clockContainer) {
+                // Adiciona alguns estilos para o relógio ficar bonito
+                // Fiz isto via JS para não precisares de mexer no CSS
+                clockContainer.style.fontSize = '2.2rem';
+                clockContainer.style.fontWeight = '700';
+                clockContainer.style.textAlign = 'center';
+                clockContainer.style.color = '#FFFFFF';
+                clockContainer.style.padding = '10px 0'; // Ajusta o espaçamento
+                clockContainer.style.lineHeight = '1.3';
+
+                // Função que atualiza a hora
+                function updateClock() {
+                    const now = new Date();
+                    let hours = now.getHours();
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    
+                    // Converte para formato 12h (AM/PM)
+                    const ampm = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // A hora 0 deve ser 12
+                    const strHours = String(hours).padStart(2, '0');
+                    
+                    // Coloca no HTML
+                    clockContainer.innerHTML = `${strHours}:${minutes}:${seconds} <span style="font-size: 1.5rem">${ampm}</span>`;
+                }
+
+                updateClock(); // Chama uma vez para não ficar vazio
+                setInterval(updateClock, 1000); // Atualiza a cada segundo
+            }
+        }
+
+        // --- Event Listeners dos Botões ---
+        prevMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+        
+        nextMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+
+        // --- Inicialização ---
+        renderCalendar();
+        renderAppointments(selectedDate); // Mostra os compromissos do dia de HOJE
+        startDigitalClock(); // NOVO: Inicia o relógio digital
+    }
+
+});

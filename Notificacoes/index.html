@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HelloCoder - Calendário</title>
+    <title>HelloCoder - Notificações</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -23,8 +23,7 @@
         <nav class="menu">
             <p class="menu-label">MENU</p>
             
-            <div class="menu-item"> 
-                <div class="menu-item-header">
+            <div class="menu-item"> <div class="menu-item-header">
                     <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" fill="currentColor"/><rect x="14" y="3" width="7" height="7" fill="currentColor"/><rect x="3" y="14" width="7" height="7" fill="currentColor"/><rect x="14" y="14" width="7" height="7" fill="currentColor"/></svg>
                     <span>Página Inicial</span>
                     <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -36,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="menu-item active">
+            <div class="menu-item">
                 <div class="menu-item-header">
                     <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="2"/><line x1="9" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="2"/><line x1="9" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="2"/></svg>
                     <span>Calendário</span>
@@ -44,14 +43,11 @@
             </div>
             <div class="menu-item">
                 <div class="menu-item-header">
-                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                    </svg>
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 3L21 21M3 21L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                     <span>Revisões</span>
                 </div>
             </div>
-            <div class="menu-item">
+            <div class="menu-item active">
                 <div class="menu-item-header">
                     <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 17C15 17 16 17 16 16C16 14.5 14 14.5 14 13C14 11.5 16 11.5 16 10C16 9 15 9 15 9M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
                     <span>Notificações</span>
@@ -66,73 +62,53 @@
 
     <main class="main-content">
         
-        <div class="calendar-container">
-            <h2>Calendário</h2>
-
-            <div class="calendar-header">
-                <div class="month-year-display">
-                    <span id="month-display">May</span>
-                    <span id="year-display">2025</span>
-                </div>
-                <div class="nav-buttons">
-                    <button id="prev-month-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button id="next-month-btn"><i class="fas fa-chevron-right"></i></button>
-                </div>
+        <header class="main-header">
+            <div class="header-title">
+                <i class="fas fa-bell"></i>
+                <span>NOTIFICAÇÕES</span>
             </div>
+            </header>
+        <hr class="header-divider">
 
-            <div class="calendar-grid calendar-weekdays">
-                <div>M</div>
-                <div>T</div>
-                <div>W</div>
-                <div>T</div>
-                <div>F</div>
-                <div>S</div>
-                <div>S</div>
-            </div>
-            <div class="calendar-grid" id="calendar-days-grid">
-                </div>
+        <div class="notifications-container">
 
-            <div class="date-quick-view">
-                <div class="date-quick-header">
-                    <h3>Date</h3>
-                    <a href="#">See All</a>
-                </div>
-                <div class="date-quick-buttons">
-                    <button class="date-btn active">Sun 4</button>
-                    <button class="date-btn">Mon 5</button>
-                    <button class="date-btn">Tue 6</button>
-                </div>
-            </div>
-        </div>
-
-        <aside class="schedule-sidebar">
-            
-            <div class="time-selector">
-                <div class="time-list-container">
-                    <span>...</span>
-                    <span>6</span> <span>37</span>
-                    <span>7</span> <span>38</span>
-                    <span>8</span> <span>40</span>
-                    <span>9</span> <span>41</span> <span>AM</span>
-                    <span>10</span> <span>42</span> <span>PM</span>
-                    <span>11</span> <span>43</span>
-                    <span>12</span> <span>44</span>
-                    <span>...</span>
-                </div>
-                <div class="time-slots">
-                    <button class="time-slot">10.00 AM</button>
-                    <button class="time-slot active">11.00 AM</button>
-                    <button class="time-slot">12.00 PM</button>
-                </div>
-            </div>
-
-            <div class="schedule-list-container">
-                <h3 class="schedule-title">TITLE</h3>
-                <div class="schedule-list" id="schedule-list">
+            <div class="notification-item">
+                <i class="fas fa-bell notification-icon"></i>
+                <div class="notification-card">
+                    <div class="notification-angled-bg">
+                        <span class="notification-time">
+                            <i class="fas fa-clock"></i> 10 days
+                        </span>
+                        <span class="notification-progress">5 / 25</span>
                     </div>
-                <span class="schedule-footer-text">Text description here.</span>
+                </div>
             </div>
-        </aside>
+
+            <div class="notification-item">
+                <i class="fas fa-bell notification-icon"></i>
+                <div class="notification-card">
+                    <div class="notification-angled-bg">
+                        <span class="notification-time">
+                            <i class="fas fa-clock"></i> 10 days
+                        </span>
+                        <span class="notification-progress">5 / 25</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notification-item">
+                <i class="fas fa-bell notification-icon"></i>
+                <div class="notification-card">
+                    <div class="notification-angled-bg">
+                        <span class="notification-time">
+                            <i class="fas fa-clock"></i> 10 days
+                        </span>
+                        <span class="notification-progress">5 / 25</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
     </main>
 

@@ -1,89 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HelloCoder - Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2e0e6ad6f.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloCoder - Atividades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="top-icons">
-      <div class="dots">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-      </div>
-    </div>
-    <div class="logo">
-      <img src="https://cdn-icons-png.flaticon.com/512/906/906175.png" alt="logo">
-      <h2>HelloCoder</h2>
-      <p>STUDY SYSTEM</p>
-    </div>
-    <nav class="menu">
-      <button class="menu-item" id="menuToggle">
-        <i class="fa-solid fa-grid-2"></i>
-      </button>
-      <div class="submenu">
-        <a href="#"><i class="fa-solid fa-book"></i> Atividades</a>
-        <a href="#"><i class="fa-solid fa-user"></i> Meu Usuário</a>
-        <a href="#"><i class="fa-solid fa-clock"></i> Pomodoro</a>
-      </div>
-      <button class="menu-item"><i class="fa-solid fa-calendar-days"></i></button>
-      <button class="menu-item"><i class="fa-solid fa-pen"></i></button>
-      <button class="menu-item"><i class="fa-solid fa-bell"></i></button>
-    </nav>
-  </aside>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+            </div>
+            <div class="left-side" style="justify-content: center;">
+                <img src="../assets/img/logo.png" alt="HelloCoder Logo" class="logo" />
+            </div>
+            </div>
 
-  <main class="content">
-    <header>
-      <h3><i class="fa-solid fa-bell"></i> Agendado para hoje:</h3>
-      <span id="dataAtual"></span>
-    </header>
-    <section class="tasks">
-      <div class="task-card">
-        <span>BANCO DE DADOS II</span>
-        <div class="time">
-          <i class="fa-regular fa-clock"></i> 23min
-        </div>
-      </div>
-      <div class="task-card">
-        <span>SISTEMAS DE INFORMAÇÃO</span>
-        <div class="time">
-          <i class="fa-regular fa-clock"></i> 1hr
-        </div>
-      </div>
-    </section>
+        <nav class="menu">
+            <p class="menu-label">MENU</p>
+            
+            <div class="menu-item active open"> <div class="menu-item-header">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" fill="currentColor"/><rect x="14" y="3" width="7" height="7" fill="currentColor"/><rect x="3" y="14" width="7" height="7" fill="currentColor"/><rect x="14" y="14" width="7" height="7" fill="currentColor"/></svg>
+                    <span>Página Inicial</span>
+                    <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div class="submenu">
+                    <a href="#" class="submenu-item active-sub">Atividades</a>
+                    <a href="#" class="submenu-item">Meu Usuário</a>
+                    <a href="#" class="submenu-item">Pomodoro</a>
+                </div>
+            </div>
 
-    <h3><i class="fa-solid fa-check"></i> Estudado hoje:</h3>
-    <section class="tasks">
-      <div class="task-card">
-        <span>BANCO DE DADOS II</span>
-        <div class="time">
-          <i class="fa-solid fa-list"></i>
-        </div>
-      </div>
-    </section>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="2"/><line x1="9" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="2"/><line x1="9" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="2"/></svg>
+                    <span>Calendário</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 3L21 21M3 21L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <span>Revisões</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 17C15 17 16 17 16 16C16 14.5 14 14.5 14 13C14 11.5 16 11.5 16 10C16 9 15 9 15 9M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
+                    <span>Notificações</span>
+                </div>
+            </div>
+        </nav>
 
-    <h3><i class="fa-solid fa-bullseye"></i> Estudado ontem:</h3>
-    <section class="tasks">
-      <div class="task-card">
-        <span>MATEMÁTICA II</span>
-        <div class="time">
-          <i class="fa-solid fa-list"></i>
-        </div>
-      </div>
-      <div class="task-card">
-        <span>JAVASCRIPT WEB II</span>
-        <div class="time">
-          <i class="fa-solid fa-list"></i>
-        </div>
-      </div>
-    </section>
-  </main>
+        <button class="add-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+    </aside>
 
-  <script src="script.js"></script>
+    <main class="main-content">
+        
+        <header class="main-header">
+            <div class="header-title">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Agendado para hoje:</span>
+            </div>
+            <div class="header-date">
+                <span>Quarta-feira, 06 de Agosto de 2025</span>
+            </div>
+        </header>
+        <hr class="header-divider">
+
+        <div class="activities-container">
+
+            <div class="activity-row">
+                <div class="activity-card">
+                    <span class="card-title">BANCO DE DADOS II</span>
+                    <div class="card-info">
+                        <i class="fas fa-clock"></i> 23min
+                    </div>
+                    <i class="fas fa-file-alt card-icon"></i>
+                </div>
+                <div class="activity-card">
+                    <span class="card-title">SISTEMAS DE INFORMAÇÃO</span>
+                    <div class="card-info">
+                        <i class="fas fa-clock"></i> 1hr
+                    </div>
+                    <i class="fas fa-file-alt card-icon"></i>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <i class="fas fa-check-circle"></i>
+                <span>Estudado hoje:</span>
+            </div>
+            <div class="activity-row">
+                <div class="activity-card">
+                    <span class="card-title">BANCO DE DADOS II</span>
+                    <i class="fas fa-file-alt card-icon"></i>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <i class="fas fa-map-pin"></i>
+                <span>Estudado ontem:</span>
+            </div>
+            <div class="activity-row">
+                <div class="activity-card">
+                    <span class="card-title">MATEMÁTICA II</span>
+                    <i class="fas fa-file-alt card-icon"></i>
+                </div>
+                <div class="activity-card">
+                    <span class="card-title">JAVASCRIPT WEB II</span>
+                    <i class="fas fa-file-alt card-icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <div class="modal-overlay" id="modal-overlay">
+        </div>
+
+    <audio id="alarm-sound" src="/assets/audio/alarm.mp3"></audio>
+
+    <script src="script.js"></script>
 </body>
 </html>
