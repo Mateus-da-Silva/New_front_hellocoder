@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Backend</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1d3a;
+            color: #fff;
+            padding: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #4FD1C5;
+        }
+        button {
+            background: #4FD1C5;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            color: #1a1d3a;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #3ba89e;
+        }
+        .result {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .success {
+            border-color: #10B981;
+        }
+        .error {
+            border-color: #EF4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste de Conexão com Backend</h1>
+        <p>Use os botões abaixo para testar a conexão com o backend:</p>
+
+        <div>
+            <button onclick="testarConexao()">1. Testar Conexão</button>
+            <button onclick="listarTodasAtividades()">2. Listar Todas Atividades</button>
+            <button onclick="listarAtividadesHoje()">3. Listar Atividades de Hoje</button>
+            <button onclick="criarAtividadeTeste()">4. Criar Atividade de Teste</button>
+        </div>
+
+        <div id="resultado" class="result"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+
+        function mostrarResultado(texto, sucesso = true) {
+            const resultado = document.getElementById('resultado');
+            resultado.textContent = texto;
+            resultado.className = 'result ' + (sucesso ? 'success' : 'error');
+        }
+
+        async function testarConexao() {
+            mostrarResultado('🔄 Testando conexão...');
+            try {
+                const resposta = await fetch(`${API_URL}/atividades`);
+                const dados = await resposta.json();
+                mostrarResultado(`✅ Conexão OK!\n\nResposta:\n${JSON.stringify(dados, null, 2)}`, true);
+            } catch (error) {
+                mostrarResultado(`❌ Erro de conexão:\n${error.message}\n\nCertifique-se de que o backend está rodando em http://localhost:3000`, false);
+            }
+        }
+
+        async function listarTodasAtividades() {
+            mostrarResultado('🔄 Buscando todas as atividades...');
+            try {
+                const resposta = await fetch(`${API_URL}/atividades?usuario_id=1`);
+                const dados = await resposta.json();
+
+                if (dados.success) {
+                    const total = dados.data.length;
+                    mostrarResultado(`✅ Encontradas ${total} atividade(s)!\n\n${JSON.stringify(dados, null, 2)}`, true);
+                } else {
+                    mostrarResultado(`⚠️ Resposta sem sucesso:\n${JSON.stringify(dados, null, 2)}`, false);
+                }
+            } catch (error) {
+                mostrarResultado(`❌ Erro:\n${error.message}`, false);
+            }
+        }
+
+        async function listarAtividadesHoje() {
+            mostrarResultado('🔄 Buscando atividades de hoje...');
+            try {
+                const resposta = await fetch(`${API_URL}/atividades/hoje?usuario_id=1`);
+                const dados = await resposta.json();
+
+                if (dados.success) {
+                    const total = dados.data.length;
+                    mostrarResultado(`✅ Encontradas ${total} atividade(s) para hoje!\n\n${JSON.stringify(dados, null, 2)}`, true);
+                } else {
+                    mostrarResultado(`⚠️ Resposta sem sucesso:\n${JSON.stringify(dados, null, 2)}`, false);
+                }
+            } catch (error) {
+                mostrarResultado(`❌ Erro:\n${error.message}`, false);
+            }
+        }
+
+        async function criarAtividadeTeste() {
+            mostrarResultado('🔄 Criando atividade de teste...');
+
+            const hoje = new Date().toISOString().split('T')[0];
+
+            const novaAtividade = {
+                titulo: 'Atividade de Teste',
+                materia: 'TESTE',
+                descricao: 'Esta é uma atividade criada para teste',
+                data_entrega: hoje,
+                hora_entrega: '14:00',
+                tempo_estimado: '30min',
+                prioridade: 'media',
+                status: 'pendente',
+                usuario_id: 1
+            };
+
+            try {
+                const resposta = await fetch(`${API_URL}/atividades`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(novaAtividade)
+                });
+
+                const dados = await resposta.json();
+
+                if (dados.success) {
+                    mostrarResultado(`✅ Atividade criada com sucesso!\n\nID: ${dados.data.id}\n\n${JSON.stringify(dados, null, 2)}`, true);
+                } else {
+                    mostrarResultado(`⚠️ Erro ao criar:\n${JSON.stringify(dados, null, 2)}`, false);
+                }
+            } catch (error) {
+                mostrarResultado(`❌ Erro:\n${error.message}`, false);
+            }
+        }
+    </script>
+</body>
+</html>

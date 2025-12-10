@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HelloCoder - Cadastro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="left-side">
+      <img src="../assets/img/logo.png" alt="HelloCoder Logo" class="logo" />
+    </div>
+
+    <div class="signup-box">
+      <h2>Crie sua conta!</h2>
+
+      <div class="input-group">
+        <label for="fullname">Nome completo</label>
+        <input type="text" id="fullname" placeholder="Adicione o seu nome completo" />
+      </div>
+
+      <div class="input-group password-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" placeholder="Adicione uma senha" />
+        <span class="toggle-password" onclick="togglePassword()">
+          <i class="eye-icon"></i>
+        </span>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Adicione seu Email" />
+      </div>
+
+      <div class="input-group">
+        <label for="phone">Número de telefone</label>
+        <input type="tel" id="phone" placeholder="Adicione seu número de telefone" />
+      </div>
+
+      <button class="btn" onclick="signup()">Criar Conta</button>
+
+      <p class="signin-text">
+        Já tem uma conta?
+        <a href="../Login/index.html" class="signin-link">Entre</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

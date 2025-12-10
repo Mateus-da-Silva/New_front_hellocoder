@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloCoder - Pomodoro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="window-controls">
+                <span class="control red"></span>
+                <span class="control yellow"></span>
+                <span class="control green"></span>
+            </div>
+            <div class="left-side">
+                <img src="../assets/img/logo.png" alt="HelloCoder Logo" class="logo" />
+            </div>
+
+        </div>
+        <nav class="menu">
+            <p class="menu-label">MENU</p>
+            <div class="menu-item active">
+                <div class="menu-item-header">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" fill="currentColor"/><rect x="14" y="3" width="7" height="7" fill="currentColor"/><rect x="3" y="14" width="7" height="7" fill="currentColor"/><rect x="14" y="14" width="7" height="7" fill="currentColor"/></svg>
+                    <span>Página Inicial</span>
+                    <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div class="submenu">
+                    <a href="#" class="submenu-item">Atividades</a>
+                    <a href="#" class="submenu-item">Meu Usuário</a>
+                    <a href="#" class="submenu-item active-sub">Pomodoro</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="2"/><line x1="9" y1="8" x2="15" y2="8" stroke="currentColor" stroke-width="2"/><line x1="9" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="2"/></svg>
+                    <span>Calendário</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 3L21 21M3 21L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <span>Revisões</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 17C15 17 16 17 16 16C16 14.5 14 14.5 14 13C14 11.5 16 11.5 16 10C16 9 15 9 15 9M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
+                    <span>Notificações</span>
+                </div>
+            </div>
+        </nav>
+        <button class="add-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+    </aside>
+
+    <main class="main-content">
+        
+        <div class="pomodoro-container">
+            <nav class="pomodoro-nav">
+                <button class="pomodoro-tab active" id="tab-pomodoro" data-time="1800">POMODORO</button>
+                <button class="pomodoro-tab" id="tab-short-break" data-time="300">PAUSA PEQUENA</button>
+                <button class="pomodoro-tab" id="tab-long-break" data-time="900">PAUSA LONGA</button>
+            </nav>
+
+            <div class="timer-display" id="timer-display">30:00</div>
+
+            <button class="start-stop-btn" id="start-stop-btn">COMEÇAR</button>
+
+            <button class="settings-btn" id="settings-btn">
+                <i class="fas fa-cog"></i> 
+            </button>
+        </div>
+
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal-content">
+                <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+                <h2>Configurações</h2>
+                
+                <div class="modal-form">
+                    <div class="form-group">
+                        <label for="pomodoro-input">Pomodoro (minutos)</label>
+                        <input type="number" id="pomodoro-input" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label for="short-break-input">Pausa Pequena (minutos)</label>
+                        <input type="number" id="short-break-input" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="long-break-input">Pausa Longa (minutos)</label>
+                        <input type="number" id="long-break-input" value="15">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cycles-input">Pomodoros até a pausa longa</label>
+                        <input type="number" id="cycles-input" value="4">
+                    </div>
+
+                    <div class="form-group-checkbox">
+                        <input type="checkbox" id="auto-start-input">
+                        <label for="auto-start-input">Iniciar timers automaticamente</label>
+                    </div>
+                    
+                    <button class="modal-save-btn" id="modal-save-btn">Salvar</button>
+                </div>
+            </div>
+        </div>
+
+        <audio id="alarm-sound" src="/assets/audio/alarm.mp3"></audio>
+
+    </main>
+
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
